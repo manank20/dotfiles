@@ -71,6 +71,9 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
     # Start your launcher
     bindsym $mod+d exec $menu
     bindsym $mod+p exec firefox
+    bindsym $mod+n exec nautilus
+    bindsym $mod+x exec killall -SIGUSR1 waybar
+    for_window [app_id="org.gnome.Nautilus"] floating enable
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -128,18 +131,19 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+1 move container to workspace number 1:$ws1
+    bindsym $mod+Shift+2 move container to workspace number 2:$ws2
+    bindsym $mod+Shift+3 move container to workspace number 3:$ws3
+    bindsym $mod+Shift+4 move container to workspace number 4:$ws4
+    bindsym $mod+Shift+5 move container to workspace number 5:$ws5
+    bindsym $mod+Shift+6 move container to workspace number 6:$ws6
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    bindsym Alt+Tab workspace back_and_forth
 #
 # Layout stuff:
 #
@@ -151,7 +155,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+    bindsym $mod+w layout toggle tabbed split
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
@@ -230,8 +234,8 @@ bar {
 # Pulse Audio controls
 # run pactl list sinks
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ # Raise
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- # Lower
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% # Raise
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% # Lower
 bindsym XF86AudioMute exec amixer sset Master toggle # Mute
 
 
@@ -242,17 +246,19 @@ bindsym XF86MonBrightnessUp exec light -A 5    # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
 
 # multimedia keys
-bindsym XF86AudioPlay  exec "mpc toggle"
-bindsym XF86AudioStop  exec "mpc stop"
-bindsym XF86AudioNext  exec "mpc next"
-bindsym XF86AudioPrev  exec "mpc prev"
-bindsym XF86AudioPause exec "mpc pause"
+bindsym XF86AudioPlay  exec mpc toggle
+bindsym XF86AudioStop  exec mpc stop
+bindsym XF86AudioNext  exec mpc next
+bindsym XF86AudioPrev  exec mpc prev
+bindsym XF86AudioPause exec mpc pause
 
+bindsym $mod+Shift+x exec swaymsg gaps inner all toggle 7
 
 
 
 #exec swaymsg output "*" bg ~/Pictures/cg-wp.jpg fill
-exec swaybg -o "*" -i /home/manank/Pictures/cg-wp.jpg
+#exec swaybg -o "*" -i /home/manank/Pictures/363724.jpg 
+exec swaybg -o "*" -i /home/manank/Pictures/wallpapers/landscapes/evening-sky.png
 input  7119:2232:GRAVITY {
 	accel_profile "flat"
 	pointer_accel -0.3

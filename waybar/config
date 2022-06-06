@@ -3,7 +3,7 @@
     "position": "bottom",
     "height": 10,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["mpd", "custom/storage-root", "custom/storage-home"],
+    "modules-center": ["custom/storage-root", "custom/storage-home"],
     "modules-right": ["memory", "cpu", "custom/cputemp","network", "pulseaudio", "battery", "backlight", "custom/time", "clock"],
 
     "sway/mode": {
@@ -82,8 +82,8 @@
         "tooltip": false
     },
     "custom/storage-root": {
-        "format": "root {}", // {}",
-        "format-alt": " {percentage}%",
+        "format": "/ {}", // {}",
+        "format-alt": "/ {percentage}%",
         "format-alt-click": "click-right",
         "return-type": "json",
         "interval": 60,
