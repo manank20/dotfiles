@@ -35,10 +35,10 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
+ exec swayidle -w before-sleep 'swaylock -f'
+#          timeout 300 'swaylock -f' \
 #          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+#          before-sleep 'swaylock -f'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -73,7 +73,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
     bindsym $mod+p exec firefox
     bindsym $mod+n exec nautilus
     bindsym $mod+x exec killall -SIGUSR1 waybar
-    for_window [app_id="org.gnome.Nautilus"] floating enable
+    #for_window [app_id="org.gnome.Nautilus"] floating enable
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -110,6 +110,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+    bindsym $mod+Print exec grim -t jpeg -q 100
 #
 # Workspaces:
 #
