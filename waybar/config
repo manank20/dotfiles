@@ -4,7 +4,7 @@
     "height": 10,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["custom/storage-root", "custom/storage-home"],
-    "modules-right": ["memory", "cpu", "custom/cputemp","network", "pulseaudio", "battery", "backlight", "custom/time", "clock"],
+    "modules-right": ["memory", "cpu", "custom/cputemp","network", "pulseaudio", "battery", "backlight", "clock", "custom/time"],
 
     "sway/mode": {
         "format": " {}"

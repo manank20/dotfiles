@@ -1,9 +1,7 @@
-
 let g:python3_host_prog = '/usr/bin/python3'
 
 " In order for neovim to use installed plugins shared with vim
 set runtimepath+=/usr/share/vim/vimfiles/
-
 augroup Fedora
   autocmd!
   " RPM spec file template
@@ -11,7 +9,6 @@ augroup Fedora
 augroup END
 
 " vim: et ts=2 sw=2
-
 " Options
 set background=dark
 set clipboard=unnamedplus
@@ -69,9 +66,15 @@ call plug#end()
 "
 
 " Vim Script
-
 let g:catppuccin_flavour = "macchiato"   "dusk  latte, frappe, macchiato, mocha"
 colorscheme catppuccin
 
-let g:lightline = {'colorscheme': 'catppuccin'}
+inoremap <C-v> <Esc>"+p
+vnoremap <C-c> "+y
 
+let g:lightline = {'colorscheme': 'catppuccin'}
+let g:neovide_fullscreen=v:true
+let g:neovide_cursor_trail_length=4.8
+
+let g:neovide_cursor_animation_length=0.05
+let g:neovide_refresh_rate=144

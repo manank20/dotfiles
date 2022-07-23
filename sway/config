@@ -110,7 +110,7 @@ set $menu dmenu_path | dmenu -fn fixed:style=FiraCode:pixelsize=14 | xargs swaym
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-    bindsym $mod+Print exec grim -t jpeg -q 100
+    bindsym $mod+Print exec XDG_CURRENT_DESKTOP=sway flameshot gui
 #
 # Workspaces:
 #
@@ -268,4 +268,9 @@ input  7119:2232:GRAVITY {
 
 }
 
+exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+#exec "/usr/lib/xdg-desktop-portal -r &"
+#exec "/usr/lib/xdg-desktop-portal-wlr -l DEBUG"
+#exec --no-startup-id /usr/lib/xdg-desktop-portal -r
+exec /home/manank/.config/sway/start.sh
 include /etc/sway/config.d/*
