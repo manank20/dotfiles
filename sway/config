@@ -73,7 +73,8 @@ set $menu dmenu_path | dmenu -fn fixed:style=FiraCode:pixelsize=14 | xargs swaym
     bindsym $mod+p exec firefox
     bindsym $mod+n exec nautilus
     bindsym $mod+x exec killall -SIGUSR1 waybar
-    #for_window [app_id="org.gnome.Nautilus"] floating enable
+    for_window [app_id="org.gnome.Nautilus"] floating enable
+    for_window [app_id="telegramdesktop"] floating enable
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -110,7 +111,8 @@ set $menu dmenu_path | dmenu -fn fixed:style=FiraCode:pixelsize=14 | xargs swaym
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-    bindsym $mod+Print exec XDG_CURRENT_DESKTOP=sway flameshot gui
+    bindsym $mod+Print exec slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+    #XDG_CURRENT_DESKTOP=sway flameshot gui
 #
 # Workspaces:
 #
@@ -258,14 +260,19 @@ bindsym XF86AudioPause exec mpc pause
 bindsym $mod+Shift+x exec swaymsg gaps inner all toggle 7
 
 
-
+input touchpad tap enable
 #exec swaymsg output "*" bg ~/Pictures/cg-wp.jpg fill
 #exec swaybg -o "*" -i /home/manank/Pictures/363724.jpg 
-exec swaybg -o "*" -i /home/manank/Pictures/wallpapers/landscapes/evening-sky.png
+exec swaybg -o "*" -i /home/manank/Pictures/wallpapers/os/arch-black-4k.png
+# landscapes/evening-sky.png
 input  7119:2232:GRAVITY {
 	accel_profile "flat"
 	pointer_accel -0.3
 
+}
+
+input 1267:12458:CUST0001:00_04F3:30AA_Touchpad {
+    tap enabled
 }
 
 exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
