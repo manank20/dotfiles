@@ -1,5 +1,6 @@
 let g:python3_host_prog = '/usr/bin/python3'
 
+
 " In order for neovim to use installed plugins shared with vim
 set runtimepath+=/usr/share/vim/vimfiles/
 augroup Fedora
@@ -121,6 +122,7 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
+"ksdjf
 
 
 " Use ctrl-[hjkl] to select the active split!
@@ -128,3 +130,6 @@ nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
+
+let g:copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
+

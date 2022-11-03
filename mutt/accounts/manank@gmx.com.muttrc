@@ -1,0 +1,34 @@
+# vim: filetype=neomuttrc
+# muttrc file for account manank@gmx.com
+set realname = "Manank Patel"
+set from = "manank@gmx.com"
+set sendmail = "msmtp -a manank@gmx.com"
+alias me manank <manank@gmx.com>
+set folder = "/home/manank/.local/share/mail/manank@gmx.com"
+set header_cache = /home/manank/.cache/mutt-wizard/manank@gmx.com/headers
+set message_cachedir = /home/manank/.cache/mutt-wizard/manank@gmx.com/bodies
+set mbox_type = Maildir
+set hostname = "gmx.com"
+source /usr/local/share/mutt-wizard/switch.muttrc
+set spoolfile = +INBOX
+set postponed = +Drafts
+set trash = +Trash
+set record = +Sent
+set crypt_use_gpgme=yes
+#set crypt_autosign
+
+macro index,pager Mc ";<save-message>=Commits<enter>" "save message to Commits folder"
+macro index,pager gc "<change-folder>=Commits<enter>" "change to Commits folder"
+macro index,pager Ml ";<save-message>=Linux<enter>" "save message to Linux folder"
+macro index,pager gl "<change-folder>=Linux<enter>" "change to Linux folder"
+
+macro index o "<shell-escape>mw -y manank@gmx.com<enter>" "run mbsync to sync manank@gmx.com"
+macro index \eg "<enter-command>unset wait_key<enter><shell-escape>gpg --list-secret-keys; printf 'Enter email ID of user to publish: '; read eID; printf 'Enter fingerprint of GPG key to publish: '; read eFGPT; /usr/local/libexec/gpg-wks-client --create \$eFGPT \$eID | msmtp --read-envelope-from --read-recipients -a manank@gmx.com<enter>"  "publish GPG key to WKS provider"
+macro index \eh "<pipe-message>/usr/local/libexec/gpg-wks-client --receive | msmtp --read-envelope-from --read-recipients -a manank@gmx.com<enter>" "confirm GPG publication"
+
+mailboxes "=Drafts" "=INBOX" "=Commits" "=Linux" "=OUTBOX" "=Sent" "=Spam" "=Trash"
+
+macro index,pager Mz "T ~h kernel.org<enter>Mly$y" "search for linux in thread"
+
+lists io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org
+subscribe io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org

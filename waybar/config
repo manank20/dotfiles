@@ -2,7 +2,7 @@
     "layer": "bottom",
     "position": "bottom",
     "height": 10,
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
     "modules-center": ["custom/storage-root", "custom/storage-home"],
     "modules-right": ["memory", "cpu", "custom/cputemp","network", "pulseaudio", "battery", "backlight", "clock", "custom/time"],
 
@@ -25,7 +25,7 @@
         "format-disconnected": "Disconnected",
         "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
         "unknown-tag": "N/A",
-        "interval": 2,
+        "interval": 10000000,
         "consume-icons": {
             "on": " "
         },
@@ -56,7 +56,7 @@
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "format-charging": " {capacity}%",
-        "interval": 30,
+        "interval": 60,
         "states": {
             "warning": 25,
             "critical": 10
@@ -86,7 +86,7 @@
         "format-alt": "/ {percentage}%",
         "format-alt-click": "click-right",
         "return-type": "json",
-        "interval": 60,
+        "interval": 600,
         "exec": "~/.config/waybar/modules/storage-root.sh"
     },
     "custom/storage-home": {
@@ -94,7 +94,7 @@
         "format-alt": " {percentage}%",
         "format-alt-click": "click-right",
         "return-type": "json",
-        "interval": 60,
+        "interval": 600,
         "exec": "~/.config/waybar/modules/storage-home.sh",
         "on-click": "ranger"
     },
@@ -109,7 +109,7 @@
     },
     "custom/time": {
         "format": " {}",
-        "interval": 5,
+        "interval": 10,
         "return-type": "json",
         "exec": "~/.config/waybar/modules/time.sh"
     },
@@ -122,7 +122,7 @@
     },
     "custom/cputemp": {
         "format": "temp: {}",
-        "interval": 1,
+        "interval": 600,
         "return-type": "json",
         "exec": "~/.config/waybar/modules/cputemp.sh"
     },
@@ -136,6 +136,18 @@
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": " {ipaddr}"
+    },
+    "custom/spotify": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null", // Filter player based on name
+        "on-click": "playerctl -p spotify play-pause"
     }
 }

@@ -1,0 +1,32 @@
+# vim: filetype=neomuttrc
+# muttrc file for account manankp@gmx.com
+set realname = "Manank Patel"
+set from = "manankp@gmx.com"
+set sendmail = "msmtp -a manankp@gmx.com"
+alias me manankp <manankp@gmx.com>
+set folder = "/home/manank/.local/share/mail/manankp@gmx.com"
+set header_cache = /home/manank/.cache/mutt-wizard/manankp@gmx.com/headers
+set message_cachedir = /home/manank/.cache/mutt-wizard/manankp@gmx.com/bodies
+set mbox_type = Maildir
+set hostname = "gmx.com"
+source /usr/local/share/mutt-wizard/switch.muttrc
+set spoolfile = +INBOX
+set postponed = +Drafts
+set trash = +Trash
+set record = +Sent
+
+macro index,pager gb "<change-folder>=BSD<enter>" "go to BSD folder"
+
+macro index o "<shell-escape>mw -y manankp@gmx.com<enter>" "run mbsync to sync manankp@gmx.com"
+macro index \eg "<enter-command>unset wait_key<enter><shell-escape>gpg --list-secret-keys; printf 'Enter email ID of user to publish: '; read eID; printf 'Enter fingerprint of GPG key to publish: '; read eFGPT; /usr/local/libexec/gpg-wks-client --create \$eFGPT \$eID | msmtp --read-envelope-from --read-recipients -a manankp@gmx.com<enter>"  "publish GPG key to WKS provider"
+macro index \eh "<pipe-message>/usr/local/libexec/gpg-wks-client --receive | msmtp --read-envelope-from --read-recipients -a manankp@gmx.com<enter>" "confirm GPG publication"
+
+macro index,pager Mb ";<save-message>=BSD<enter>" "save message to BSD"
+
+mailboxes "=Drafts" "=INBOX" "=BSD" "=OUTBOX" "=Sent" "=Spam" "=Trash" 
+
+lists threads@FreeBSD.org ports@FreeBSD.org ports-announce@FreeBSD.org bugs@FreeBSD.org questions@FreeBSD.org hackers@FreeBSD.org
+subscribe threads@FreeBSD.org ports@FreeBSD.org ports-announce@FreeBSD.org bugs@FreeBSD.org questions@FreeBSD.org hackers@FreeBSD.org
+
+macro index,pager Mz "T ~h freebsd<enter>Mby$y" "search for freebsd.org in thread"
+

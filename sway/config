@@ -69,7 +69,8 @@ set $menu dmenu_path | dmenu -fn fixed:style=FiraCode:pixelsize=14 | xargs swaym
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    # bindsym $mod+d exec $menu
+    bindsym $mod+d exec wofi --show drun --show-icons --drun-display-format "{name}"
     bindsym $mod+p exec firefox
     bindsym $mod+n exec nautilus
     bindsym $mod+x exec killall -SIGUSR1 waybar
@@ -122,6 +123,7 @@ set $menu dmenu_path | dmenu -fn fixed:style=FiraCode:pixelsize=14 | xargs swaym
     set $ws4 rust
     set $ws5 C
     set $ws6 misc
+    set $ws10 spotify
     # Switch to workspace
     bindsym $mod+1 workspace number 1:$ws1
     bindsym $mod+2 workspace number 2:$ws2
@@ -132,7 +134,7 @@ set $menu dmenu_path | dmenu -fn fixed:style=FiraCode:pixelsize=14 | xargs swaym
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
+    bindsym $mod+0 workspace number 10:$ws10
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1:$ws1
     bindsym $mod+Shift+2 move container to workspace number 2:$ws2
@@ -143,7 +145,7 @@ set $menu dmenu_path | dmenu -fn fixed:style=FiraCode:pixelsize=14 | xargs swaym
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+    bindsym $mod+Shift+0 move container to workspace number 10:$ws10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
     bindsym Alt+Tab workspace back_and_forth
@@ -251,11 +253,11 @@ bindsym XF86MonBrightnessUp exec light -A 5    # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
 
 # multimedia keys
-bindsym XF86AudioPlay  exec mpc toggle
-bindsym XF86AudioStop  exec mpc stop
-bindsym XF86AudioNext  exec mpc next
-bindsym XF86AudioPrev  exec mpc prev
-bindsym XF86AudioPause exec mpc pause
+bindsym XF86AudioPlay  exec playerctl play-pause
+bindsym XF86AudioStop  exec playerctl stop
+bindsym XF86AudioNext  exec playerctl next
+bindsym XF86AudioPrev  exec playerctl prev
+bindsym XF86AudioPause exec playerctl pause
 
 bindsym $mod+Shift+x exec swaymsg gaps inner all toggle 7
 
@@ -273,7 +275,12 @@ input  7119:2232:GRAVITY {
 
 input 1267:12458:CUST0001:00_04F3:30AA_Touchpad {
     tap enabled
+#    natural_scroll disabled
 }
+
+exec swaync
+
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
 exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 #exec "/usr/lib/xdg-desktop-portal -r &"

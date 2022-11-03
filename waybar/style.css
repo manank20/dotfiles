@@ -1,7 +1,6 @@
 * {
     border:        none;
-    border-radius: 0;
-    font-family:   Inconsolata;
+    border-radius: 0; font-family:   Inconsolata;
     min-height: 13px;
     font-size:     12px;
     font-weight:    bold;
@@ -61,7 +60,7 @@ window#waybar.solo {
     color:      rgba(238, 46, 36, 1);
 }
 
-#custom-cputemp #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-spotify, #custom-weather, #custom-mail {
+#custom-cputemp #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-weather, #custom-mail {
     margin:     0px 0px 0px 0px;
     min-width:  0px;
 }
@@ -205,14 +204,15 @@ window#waybar.solo {
     background: rgba(154, 237, 254, 0);
 }
 
-#custom-snapcount {
+#custom-spotify {
     margin-left: 2px;
     margin-right: 2px;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 10px;
     transition: none;
-    color: #4d4d4d;
+    color: #ffffff;
+    /*color: #4d4d4d; */
     background: rgba(154, 237, 254, 0);
 }
 
