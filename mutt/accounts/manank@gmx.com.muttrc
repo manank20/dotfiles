@@ -30,5 +30,5 @@ mailboxes "=Drafts" "=INBOX" "=Commits" "=Linux" "=OUTBOX" "=Sent" "=Spam" "=Tra
 
 macro index,pager Mz "T ~h kernel.org<enter>Mly$y" "search for linux in thread"
 
-lists io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org
-subscribe io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org
+lists io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org linux-acpi@vger.kernel.org
+subscribe io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org linux-acpi@vger.kernel.org

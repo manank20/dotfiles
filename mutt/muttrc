@@ -9,6 +9,8 @@ set use_threads=threads sort=reverse-last-date sort_aux=reverse-last-date
 set signature = "~/.config/signature.text"
 set user_agent
 
+set alias_file = "~/.config/mutt/aliases"
+source "~/.config/mutt/aliases"
 # modern config
 # set use_threads=threads sort=last-date sort_aux=date
 
@@ -51,3 +53,4 @@ color   body    brightwhite     default         ^(Signed-off-by).*
 color   body    brightwhite     default         ^(Acked-by).*             
 color   body    brightwhite     default         ^(Reviewed-by).*             
 color   body    brightwhite     default         ^(Cc)  
+macro index,pager i4 '<sync-mailbox><enter-command>source /home/manank/.config/mutt/accounts/f20201696@goa.bits-pilani.ac.in.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to f20201696@goa.bits-pilani.ac.in"
