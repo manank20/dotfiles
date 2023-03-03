@@ -1,7 +1,7 @@
 * {
     border:        none;
     border-radius: 0; font-family:  Inconsolata;
-    min-height: 13px;
+    min-height: 12px;
     font-size:     12px;
     font-weight:    bold;
     box-shadow:    none;
@@ -44,16 +44,19 @@ window#waybar.solo {
 }
 
 #workspaces button.focused {
-    border-top: 3px solid #9aedfe;
-    color: #9aedfe;
+   /* border-top: 1px solid #9aedfe; */
+    background: #9aedfe;
+    border-radius: 3px;
+    color: rgba(50, 0, 0, 1);
 }
 
 #workspaces button:hover {
-    border-top: 3px solid #ff79c6;
+/*    border-top: 1px solid #ff79c6; */
     transition: none;
     box-shadow: inherit;
     text-shadow: inherit;
-    color: #ff79c6;
+    color: #fff9c6;
+   /* color: #ff79c6; */
 }
 
 #workspaces button.urgent {

@@ -24,7 +24,7 @@ set splitbelow splitright
 set title
 set ttimeoutlen=0
 set wildmenu
-
+set guifont=FiraCode\ NF:h11
 " Tabs size
 set expandtab
 set shiftwidth=4
@@ -36,6 +36,13 @@ au BufRead,BufNewFile *.ll set filetype=llvm
 au BufRead,BufNewFile *.s set filetype=asm
 set t_Co=256
 
+
+let g:neovide_scale_factor=1.0
+function! ChangeScaleFactor(delta)
+  let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
+endfunction
+nnoremap <expr><C-=> ChangeScaleFactor(1.25)
+nnoremap <expr><C--> ChangeScaleFactor(1/1.25)
 
 call plug#begin()
     " Appearance
@@ -68,7 +75,9 @@ call plug#begin()
 "    Plug 'simrat39/rust-tools.nvim'
 "    Plug 'nvim-lua/plenary.nvim'
 
-    call plug#end()
+    Plug 'numToStr/Comment.nvim'
+
+call plug#end()
 
 "lua << EOF
 " local catppuccin = require("catppuccin")
@@ -77,6 +86,8 @@ call plug#begin()
 "catppuccin.setup("")
 "EOF
 "
+
+lua require('Comment').setup()
 
 " Vim Script
 let g:catppuccin_flavour = "macchiato"   "dusk  latte, frappe, macchiato, mocha"
@@ -91,7 +102,6 @@ let g:neovide_cursor_trail_length=4.8
 
 let g:neovide_cursor_animation_length=0.05
 let g:neovide_refresh_rate=144
-
 
 
 " coc settings
@@ -146,7 +156,7 @@ dap.adapters.lldb = {
   command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
   name = 'lldb'
 }
-
+  
 local dap = require('dap')
 dap.configurations.c = {
   {

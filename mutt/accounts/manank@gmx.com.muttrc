@@ -20,15 +20,18 @@ set crypt_use_gpgme=yes
 macro index,pager Mc ";<save-message>=Commits<enter>" "save message to Commits folder"
 macro index,pager gc "<change-folder>=Commits<enter>" "change to Commits folder"
 macro index,pager Ml ";<save-message>=Linux<enter>" "save message to Linux folder"
+macro index,pager Ma ";<save-message>=Arch<enter>" "save message to Arch folder"
 macro index,pager gl "<change-folder>=Linux<enter>" "change to Linux folder"
 
 macro index o "<shell-escape>mw -y manank@gmx.com<enter>" "run mbsync to sync manank@gmx.com"
 macro index \eg "<enter-command>unset wait_key<enter><shell-escape>gpg --list-secret-keys; printf 'Enter email ID of user to publish: '; read eID; printf 'Enter fingerprint of GPG key to publish: '; read eFGPT; /usr/local/libexec/gpg-wks-client --create \$eFGPT \$eID | msmtp --read-envelope-from --read-recipients -a manank@gmx.com<enter>"  "publish GPG key to WKS provider"
 macro index \eh "<pipe-message>/usr/local/libexec/gpg-wks-client --receive | msmtp --read-envelope-from --read-recipients -a manank@gmx.com<enter>" "confirm GPG publication"
 
-mailboxes "=Drafts" "=INBOX" "=Commits" "=Linux" "=OUTBOX" "=Sent" "=Spam" "=Trash"
+alias arch-general arch-general@lists.archlinux.org 
+mailboxes "=Drafts" "=INBOX" "=Commits" "=Linux" "=Arch" "=OUTBOX" "=Sent" "=Spam" "=Trash" 
 
 macro index,pager Mz "T ~h kernel.org<enter>Mly$y" "search for linux in thread"
+macro index,pager Mx "T ~h archlinux.org<enter>May$y" "Move to Arch folder"
 
-lists io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org linux-acpi@vger.kernel.org
-subscribe io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org linux-acpi@vger.kernel.org
+lists io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org linux-acpi@vger.kernel.org netdev@vger.kernel.org arch-general@lists.archlinux.org arch-dev-public@lists.archlinux.org
+subscribe io-uring@vger.kernel.org rust-for-linux@vger.kernel.org linux-newbie@vger.kernel.org linux-acpi@vger.kernel.org netdev@vger.kernel.org arch-general@lists.archlinux.org arch-dev-public@lists.archlinux.org

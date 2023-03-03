@@ -53,3 +53,4 @@ color   body    brightwhite     default         ^(Reviewed-by).*
 color   body    brightwhite     default         ^(Cc)  
 macro index,pager i4 '<sync-mailbox><enter-command>source /home/manank/.config/mutt/accounts/f20201696@goa.bits-pilani.ac.in.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to f20201696@goa.bits-pilani.ac.in"
 macro index Mr "T ~O | ~N\n;N"
+macro index,pager i5 '<sync-mailbox><enter-command>source /home/manank/.config/mutt/accounts/manank@manank.me.muttrc<enter><change-folder>!<enter>;<check-stats>' "switch to manank@manank.me"
