@@ -16,7 +16,7 @@ set clipboard=unnamedplus
 set colorcolumn=85
 set completeopt=noinsert,menuone,noselect
 set cursorline
-set guifont=FiraCode\ NF:h11
+" set guifont=FiraCode\ NF:h11
 set hidden
 set inccommand=split
 set mouse=a
@@ -37,12 +37,14 @@ au BufRead,BufNewFile *.ll set filetype=llvm
 au BufRead,BufNewFile *.s set filetype=asm
 set t_Co=256
 
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
-  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
-  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
-  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
-endfor
+" for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
+"   execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+"   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+"   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+"   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+" endfor
+
+
 
 let g:neovide_scale_factor=1.0
 function! ChangeScaleFactor(delta)
@@ -58,7 +60,9 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     " Plug 'itchyny/lightline.vim'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+    " Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+    " Plug 'ellisonleao/gruvbox.nvim'
+    Plug 'morhetz/gruvbox'
 
     " Utilities
     Plug 'sheerun/vim-polyglot'
@@ -71,12 +75,13 @@ call plug#begin()
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-treesitter/nvim-treesitter-context'
+    Plug 'hedyhli/outline.nvim'
 
     " Completion / linters / formatters
     Plug 'neoclide/coc.nvim',  {'branch': 'release'}
     Plug 'plasticboy/vim-markdown'
 
-     Plug 'ThePrimeagen/harpoon', {'branch': 'harpoon2'}
+    Plug 'ThePrimeagen/harpoon', {'branch': 'harpoon2'}
 
     " Git
     Plug 'airblade/vim-gitgutter'
@@ -94,11 +99,22 @@ call plug#begin()
 
     Plug 'numToStr/Comment.nvim'
 
-    Plug 'ThePrimeagen/harpoon', {'branch': 'harpoon2'}
+    " Plug 'ThePrimeagen/harpoon', {'branch': 'harpoon2'}
 
     Plug 'xolox/vim-session'
     Plug 'xolox/vim-misc'
 
+    " nvim v0.7.2
+    Plug 'kdheepak/lazygit.nvim'
+
+    " tags 
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'skywind3000/gutentags_plus'
+
+    " Terminal
+    Plug 'boltlessengineer/bufterm.nvim'
+
+    Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 
@@ -110,24 +126,34 @@ let g:airline#extensions#tabline#show_tabline = 2
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tabs = 1
 
-
-"lua << EOF
-" local catppuccin = require("catppuccin")
-
-"-- configure it
-"catppuccin.setup("")
-"EOF
+" " enable gtags module
+" let g:gutentags_modules = ['ctags', 'gtags_cscope']
 "
+" " config project root markers.
+" let g:gutentags_project_root = ['.root']
+"
+" " generate datebases in my cache directory, prevent gtags files polluting my project
+" let g:gutentags_cache_dir = expand('~/.cache/tags')
+"
+" " change focus to quickfix window after search (optional).
+" let g:gutentags_plus_switch = 1
+
+let g:gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
 
 lua require('Comment').setup()
-
+lua require("ibl").setup()
 " Vim Script
-let g:catppuccin_flavour = "macchiato"   "dusk  latte, frappe, macchiato, mocha"
-colorscheme catppuccin
+" let g:catppuccin_flavour = "macchiato"   "dusk  latte, frappe, macchiato, mocha"
+" colorscheme catppuccin
+
+set background=dark " or light if you want light mode
+colorscheme gruvbox
+
+let g:gruvbox_invert_selection=1
 
 inoremap <C-v> <Esc>"+p
 vnoremap <C-c> "+y
-nnoremap \r :Ag<CR>
+nnoremap \r :Rg<CR>
 nnoremap \f :Telescope fd<CR>
 " nnoremap \h :Telescope oldfiles<CR>
 " nnoremap <silent> <C-y> :History<CR>
@@ -139,6 +165,7 @@ let g:neovide_cursor_trail_length=4.8
 
 let g:neovide_cursor_animation_length=0.05
 let g:neovide_refresh_rate=144
+
 
 let g:session_autosave='yes'
 let g:session_autoload='yes'
@@ -179,12 +206,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Harpoon Keybinds
-nnoremap  \hx :lua require("harpoon.mark").add_file()<CR>
-nnoremap  \hs :lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap  \hn :lua require("harpoon.ui").nav_next()<CR>
-nnoremap  \hp :lua require("harpoon.ui").nav_prev()<CR>
-
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -221,7 +242,42 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
+" if has('nvim')
+"   tnoremap <C-[> <C-\><C-n>
+"   tnoremap <M-[> <Esc>
+"   tnoremap <C-v><Esc> <Esc>
+" endif
+
+nnoremap <silent> <leader>o :Outline<CR>
+
+set foldlevel=20
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+" lua vim.wo.foldmethod = 'expr'
+" lua vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
 lua << EOF
+
+
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
+require('outline').setup()
+
+require('bufterm').setup({
+  save_native_terms = true, -- integrate native terminals from `:terminal` command
+  start_in_insert   = true, -- start terminal in insert mode
+  remember_mode     = true, -- remember vi_mode of terminal buffer
+  enable_ctrl_w     = true, -- use <C-w> for window navigating in terminal mode (like vim8)
+  terminal = {              -- default terminal settings
+    buflisted         = false, -- whether to set 'buflisted' option
+    termlisted        = true,  -- list terminal in termlist (similar to buflisted)
+    fallback_on_exit  = true,  -- prevent auto-closing window on terminal exit
+    auto_close        = true,  -- auto close buffer on terminal job ends
+  }
+})
 
 require("telescope").setup({
   extensions = {
