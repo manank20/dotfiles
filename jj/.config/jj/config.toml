@@ -5,3 +5,6 @@ email = "manank@manank.in"
 [ui]
 pager = ":builtin"
 editor = "nvim"
+default-command = "log"
+
+

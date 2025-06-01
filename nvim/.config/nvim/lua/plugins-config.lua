@@ -11,7 +11,10 @@ vim.g.gutentags_generate_on_empty_buffer = true
 vim.g.gutentags_modules = true
 vim.cmd([[command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')]])
 vim.g.gutentags_ctags_extra_args = { '--tag-relative=yes', '--fields=+ailmnS', }
-vim.g.gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
+
+if vim.loop.os_uname().sysname == "Darwin" then
+    vim.g.gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
+end
 
 
 -- custom
