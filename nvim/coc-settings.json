@@ -1,10 +1,11 @@
 {
- "languageserver": {
-    "svls": {
-        "command": "~/.cargo/bin/svls",
-        "filetypes": ["systemverilog"]
-    }
-},
-
-"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd"
+    "clangd.enabled": true,
+    "clangd.arguments": [
+        "-header-insertion=never",
+        "--path-mappings=/garage/workspace/test/wifi-mwm=/Users/manank/code/wifi-mwm/wifi-mwm-main"
+        // "-I/opt/homebrew/include/",
+        // "--log=verbose"
+    ],
+    "clangd.checkUpdates": true,
+    "coc.preferences.formatOnSave": true
 }

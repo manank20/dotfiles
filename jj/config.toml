@@ -1,0 +1,7 @@
+[user]
+name = "Manank Patel"
+email = "manank@manank.in"
+
+[ui]
+pager = ":builtin"
+editor = "nvim"

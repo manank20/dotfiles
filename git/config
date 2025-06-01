@@ -1,0 +1,37 @@
+[user]
+	name = Manank Patel
+	email = manank@arista.com
+[commit]
+	gpgsign = true
+	verbose = true
+
+[core]
+	pager = delta
+	excludesfile = ~/.config/global-gitignore
+
+[interactive]
+ 	diffFilter = delta --color-only
+
+[delta]
+	side-by-side = true
+	navigate = true    # use n and N to move between diff sections
+	
+	# delta detects terminal colors automatically; set one of these to disable auto-detection
+	# dark = true
+	# light = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	colorMoved = default
+	algorithm = histogram
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[help]
+	autocorrect = true
+
+[pull]
+	rebase = true
