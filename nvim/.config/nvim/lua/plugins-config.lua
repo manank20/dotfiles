@@ -17,12 +17,22 @@ if vim.loop.os_uname().sysname == "Darwin" then
 end
 
 
+-- LazyJJ
+require('lazyjj').setup({
+    mapping = '<leader>jj'
+  })
+
 -- custom
 vim.g.gutentags_modules = { 'ctags'--[[ , 'gtags_cscope'  ]]}
 
 -- Lualine and Onedark theme setup
 require('lualine').setup {
-  options = { theme = 'onedark' }
+  options = { theme = 'onedark' },
+  sections = {
+    lualine_c = {
+      {'filename', path = 1 }
+    }
+  }
 }
 require('onedark').setup { style = 'darker' }
 require('onedark').load()
@@ -103,7 +113,7 @@ require('onedark').load()
   end
   require("telescope").load_extension('harpoon')
   vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Open Harpoon list" })
-  vim.keymap.set("n", "<leader>a", function() harpoon:add_file() end, { desc = "Add File to Harpoon" })
+  vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Add File to Harpoon" })
   vim.keymap.set("n", "<leader>m", function() harpoon:remove_file() end, { desc = "Remove File from Harpoon" })
 
   -- Treesitter configuration for highlighting and textobjects

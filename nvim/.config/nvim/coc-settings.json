@@ -2,10 +2,10 @@
     "clangd.enabled": true,
     "clangd.arguments": [
         "-header-insertion=never",
-        "--path-mappings=/garage/workspace/test/wifi-mwm=/Users/manank/code/wifi-mwm/wifi-mwm-main"
         // "-I/opt/homebrew/include/",
         // "--log=verbose"
     ],
     "clangd.checkUpdates": true,
-    "coc.preferences.formatOnSave": true
+    "coc.preferences.formatOnSave": true,
+    // "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/19.1.2/clangd_19.1.2/bin/clangd"
 }

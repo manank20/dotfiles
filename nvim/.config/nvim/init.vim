@@ -15,3 +15,5 @@ source ~/.config/nvim/keybindings.vim
 " Load Lua-based configurations (all advanced plugin setups are in plugins-config.lua)
 lua require('plugins-config')
 
+lua require('debugger-config')
+

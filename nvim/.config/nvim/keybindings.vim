@@ -13,7 +13,7 @@ nnoremap <leader>gi :LazyGit<CR>
 nnoremap <leader>h :Telescope oldfiles<CR>
 
 " NERDTree toggle
-nnoremap \n :NERDTreeToggle %<CR>
+nnoremap \n :NERDTreeToggle<CR>
 
 " Quickfix navigation
 nnoremap [q :cnext<CR>
@@ -36,6 +36,11 @@ vnoremap <C-c> "+y
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "<Tab>" : coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "<C-g>u<CR><c-r>=coc#on_enter()<CR>"
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 
 function! CheckBackspace() abort
  let col = col('.') - 1

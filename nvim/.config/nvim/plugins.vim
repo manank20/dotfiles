@@ -47,6 +47,13 @@ Plug 'boltlessengineer/bufterm.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'APZelos/blamer.nvim'
 
+" Debugger 
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
+
+Plug 'swaits/lazyjj.nvim'
+
 call plug#end()
 
 " Blamer plugin setting
