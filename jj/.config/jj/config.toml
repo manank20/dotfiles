@@ -1,10 +1,50 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[aliases]
+rall = [ "rebase", "--skip-emptied", "-r (mutable()&mine())", "-d master@origin" ]
+e = ["edit"]
+
+[core]
+fsmonitor = "watchman"
+
+[core.watchman]
+register-snapshot-trigger = true
+
 [user]
 name = "Manank Patel"
 email = "manank@manank.in"
 
+[signing]
+behaviour = "own"
+backend = "gpg"
+
 [ui]
 pager = ":builtin"
-editor = "nvim"
 default-command = "log"
+editor = "nvim"
+should-sign-off = false
+show-cryptographic-signatures = false
 
+[gerrit]
+enabled = false
 
+[git]
+
+[template-aliases]
+'gerrit_change_id(change_id)' = '"Ideadc0de" ++ change_id.normal_hex()'
+
+[templates]
+draft_commit_description = '''
+	separate("\n\n",
+            if(
+                config("ui.should-sign-off").as_boolean() && !description.contains("Signed-off-by: " ++ author.name()),
+                "\nSigned-off-by: " ++ author.name() ++ " <" ++ author.email() ++ ">",
+              ),
+            description.remove_suffix("\n"),
+            if(config("gerrit.enabled").as_boolean() && !description.contains(change_id.normal_hex()),
+                "\nChange-Id: " ++ gerrit_change_id(change_id)
+              ),
+            "\n",
+            surround("JJ: Changes:\n", "", indent("JJ: \t", diff.summary()))
+	)
+'''
