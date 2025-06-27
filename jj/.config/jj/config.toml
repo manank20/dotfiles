@@ -34,6 +34,13 @@ enabled = false
 'gerrit_change_id(change_id)' = '"Ideadc0de" ++ change_id.normal_hex()'
 
 [templates]
+# jj faq recommendation for gerrit integration
+# commit_trailers = '''
+# if(
+#   config("gerrit.enabled").as_boolean() && !trailers.contains_key("Change-Id"),
+#   format_gerrit_change_id_trailer(self)
+# )
+# '''
 draft_commit_description = '''
 	separate("\n\n",
             if(
@@ -41,7 +48,7 @@ draft_commit_description = '''
                 "\nSigned-off-by: " ++ author.name() ++ " <" ++ author.email() ++ ">",
               ),
             description.remove_suffix("\n"),
-            if(config("gerrit.enabled").as_boolean() && !description.contains(change_id.normal_hex()),
+           if(config("gerrit.enabled").as_boolean() && !description.contains("Change-Id"),
                 "\nChange-Id: " ++ gerrit_change_id(change_id)
               ),
             "\n",
