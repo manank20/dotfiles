@@ -29,6 +29,7 @@ show-cryptographic-signatures = false
 enabled = false
 
 [git]
+write-change-id-header = false
 
 [template-aliases]
 'gerrit_change_id(change_id)' = '"Ideadc0de" ++ change_id.normal_hex()'
