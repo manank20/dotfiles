@@ -47,8 +47,8 @@ require('onedark').load()
   require("nvim-gerrit").setup({
       url = "https://gerrit.corp.arista.io/a",
       digest_authentication = false,
-      username = 'manank',
-      password = 'hgWLulwFVZeN5++61wzJZ0AyWjRa+WygevSYOIFF8g', -- WARNING: Consider externalizing sensitive data!
+      username = os.getenv("GERRIT_USERNAME"),
+      password = os.getenv("GERRIT_PASSWORD"),
     })
   vim.keymap.set("n", "<leader>gr", require("nvim-gerrit").list_changes,
     { desc = "Gerrit: List Changes" })
