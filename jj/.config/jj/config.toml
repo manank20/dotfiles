@@ -4,11 +4,9 @@
 rall = [ "rebase", "--skip-emptied", "-r (mutable()&mine())", "-d master@origin" ]
 e = ["edit"]
 
-[core]
-fsmonitor = "watchman"
-
-[core.watchman]
-register-snapshot-trigger = true
+[fsmonitor]
+backend = "watchman"
+watchman.register-snapshot-trigger = true
 
 [user]
 name = "Manank Patel"
