@@ -2,20 +2,19 @@
 vim.g.lazygit_config_file_path = '~/.config/lazygit/config.yml' -- table of custom config file paths
 
 vim.g.gutentags_add_default_project_roots = false
-vim.g.gutentags_project_root = { 'package.json', '.git' }
+vim.g.gutentags_project_root = { '.git', 'Makefile', 'Makefile.sdk' }
 vim.g.gutentags_cache_dir = vim.fn.stdpath("data") .. '/ctags'
 vim.g.gutentags_generate_on_new = true
 vim.g.gutentags_generate_on_missing = true
 vim.g.gutentags_generate_on_write = true
-vim.g.gutentags_generate_on_empty_buffer = true
-vim.g.gutentags_modules = true
+vim.g.gutentags_generate_on_empty_buffer = false
+vim.g.gutentags_modules = {'ctags', 'gtags_cscope'}
 vim.cmd([[command! -nargs=0 GutentagsClearCache call system('rm ' . g:gutentags_cache_dir . '/*')]])
 vim.g.gutentags_ctags_extra_args = { '--tag-relative=yes', '--fields=+ailmnS', }
 
 if vim.loop.os_uname().sysname == "Darwin" then
     vim.g.gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
 end
-
 
 -- LazyJJ
 require('lazyjj').setup({

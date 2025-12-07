@@ -54,17 +54,22 @@ Plug 'rcarriga/nvim-dap-ui'
 
 Plug 'swaits/lazyjj.nvim'
 
+" arista
+Plug 'augmentcode/augment.vim'
+
 call plug#end()
+
+let g:augment_workspace_folders = ['/garage/workspace/test/wifi-mwm-jj', '/garage/workspace/arista']
 
 " Blamer plugin setting
 let g:blamer_enabled = 1
 
 " Gutentags configuration
 " let g:gutentags_modules = ['ctags', 'gtags_cscope']
-" let g:gutentags_project_root = ['.root', '.git', 'Makefile']
+" let g:gutentags_project_root = ['.git', 'Makefile']
 " let g:gutentags_cache_dir = expand('~/.cache/tags')
 " let g:gutentags_plus_switch = 1
-" let g:gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
+" " let g:gutentags_ctags_executable = "/opt/homebrew/bin/ctags"
 " let g:gutentags_generate_on_new = 1
 " let g:gutentags_generate_on_missing = 1
 " let g:gutentags_generate_on_write = 1
@@ -73,6 +78,53 @@ let g:blamer_enabled = 1
 " let g:gutentags_plus_nomap = 1
 " let g:gutentags_cscope_tagfile = 'cscope.files'
 " let g:gutentags_cscope_build_cmd = 'cscope -bqR'
+let g:gutentags_ctags_exclude = [
+         \ '*.git', '*.svg', '*.hg',
+         \ '*/tests/*',
+         \ 'build',
+         \ 'dist',
+         \ '*sites/*/files/*',
+         \ 'bin',
+         \ 'node_modules',
+         \ 'bower_components',
+         \ 'cache',
+         \ 'compiled',
+         \ 'docs',
+         \ 'example',
+         \ 'bundle',
+         \ 'vendor',
+         \ '*.md',
+         \ '*-lock.json',
+         \ '*.lock',
+         \ '*bundle*.js',
+         \ '*build*.js',
+         \ '.*rc*',
+         \ '*.json',
+         \ '*.min.*',
+         \ '*.map',
+         \ '*.bak',
+         \ '*.zip',
+         \ '*.pyc',
+         \ '*.class',
+         \ '*.sln',
+         \ '*.Master',
+         \ '*.csproj',
+         \ '*.tmp',
+         \ '*.csproj.user',
+         \ '*.cache',
+         \ '*.pdb',
+         \ 'tags*',
+         \ 'cscope.*',
+         \ '*.css',
+         \ '*.less',
+         \ '*.scss',
+         \ '*.exe', '*.dll',
+         \ '*.mp3', '*.ogg', '*.flac',
+         \ '*.swp', '*.swo',
+         \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+         \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+         \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+         \ ]
 
 
 

@@ -13,7 +13,7 @@ name = "Manank Patel"
 email = "manank@manank.in"
 
 [signing]
-behaviour = "own"
+behaviour = "keep"
 backend = "gpg"
 
 [ui]
@@ -24,7 +24,8 @@ should-sign-off = false
 show-cryptographic-signatures = false
 
 [gerrit]
-enabled = false
+enabled = true
+default-remote-branch = "master"
 
 [git]
 write-change-id-header = false

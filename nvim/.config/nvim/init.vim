@@ -1,5 +1,8 @@
 let g:python3_host_prog = '/usr/bin/python3'
 
+set runtimepath^=/usr/share/vim/vimfiles
+set runtimepath+=/usr/share/vim/vimfiles/after
+
 " Include any additional runtime paths if needed
 set runtimepath+=/usr/share/vim/vimfiles/
 

@@ -24,6 +24,13 @@ set tabstop=4
 filetype plugin indent on
 syntax on
 
+function! Formatonsave()
+  let l:formatdiff = 1
+  pyf /home/manank/.config/nvim/clang-format.py
+endfunction
+autocmd BufWritePre *.h,*.cc,*.cpp,*.c call Formatonsave()
+
+
 " Custom filetype definitions
 au BufRead,BufNewFile *.ll set filetype=llvm
 au BufRead,BufNewFile *.s set filetype=asm
@@ -57,7 +64,6 @@ nnoremap <expr><C--> ChangeScaleFactor(1/1.25)
 " Custom command definitions
 command Push !rsync -rav --delete --filter=':- .gitignore' . bus-wifi-mwm:/garage/workspace/test/wifi-mwm/
 command -nargs=1 GitPush !git push origin HEAD:refs/for/<args>
-set statusline+=%{gutentags#statusline()}
 
 " Folding settings using treesitter
 set foldlevel=20
